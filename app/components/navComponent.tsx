@@ -3,8 +3,12 @@ import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import NavLink from "./smaller/navLink";
+import { Session } from "next-auth";
 
-export default function NavComponent() {
+type Props = {
+  session: Session | null;
+};
+export default function NavComponent({ session }: Props) {
   const [openNav, setOpenNav] = useState(false);
 
   return (
@@ -28,12 +32,17 @@ export default function NavComponent() {
           <li>
             <NavLink text="My todo list" link="/"></NavLink>
           </li>
-          <li>
-            <NavLink text="Sign in" link="/"></NavLink>
-          </li>
-          <li>
-            <NavLink text="Sign up" link="/"></NavLink>
-          </li>
+          {session === null ? (
+            <>
+              <li>
+                <NavLink text="Sign in or Sign up" link="/sign-in"></NavLink>
+              </li>
+            </>
+          ) : (
+            <li>
+              <NavLink text="Account" link="/"></NavLink>
+            </li>
+          )}
         </ul>
       </nav>
     </>
