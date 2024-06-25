@@ -9,7 +9,7 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
   providers: [
     GitHub,
     Resend({
-      from: "no-reply@todolist-nextjs.vercel.app",
+      from: "no-reply@todolist-nextjs-two.vercel.app",
     }),
   ],
 });
