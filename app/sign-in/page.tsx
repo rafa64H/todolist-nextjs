@@ -15,31 +15,12 @@ export default async function SignInPage() {
   return (
     <>
       <Header></Header>
-
-      <form
-        action={async (FormData) => {
-          "use server";
-          await signIn("resend", FormData);
-        }}
-        className="my-4 text-white"
-      >
-        <h1 className="text-4xl text-center font-semibold">Sign In</h1>
-        <FormInputEmail
-          idAttribute="email"
-          labelText="Email"
-          placeholderText="Enter your email"
-          name={"email"}
-        ></FormInputEmail>
-
-        <ButtonYellow buttonType="submit" text="Send email"></ButtonYellow>
-      </form>
-
       <form
         action={async () => {
           "use server";
           await signIn("github");
         }}
-        className="my-4"
+        className="my-4 flex justify-center items-center"
       >
         <ButtonYellow
           buttonType="submit"
