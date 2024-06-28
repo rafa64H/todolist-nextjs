@@ -30,7 +30,7 @@ export default function NavComponent({ session }: Props) {
             <NavLink text="Home" link="/"></NavLink>
           </li>
           <li>
-            <NavLink text="My todo list" link="/"></NavLink>
+            <NavLink text="My todo list" link="/my-todolist"></NavLink>
           </li>
           {session === null ? (
             <>

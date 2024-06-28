@@ -12,11 +12,11 @@ export default function FormInputText({
   placeholderText,
 }: Props) {
   return (
-    <div className="flex flex-col items-start text-2xl font-semibold md:flex-row md:items-center md:gap-16">
+    <div className="flex flex-col items-start text-2xl text-white font-semibold md:flex-row md:items-center md:gap-16">
       <label htmlFor={idAttribute}>{labelText}:</label>
       <input
         type="text"
-        className="text-black max-w-[95%]"
+        className="text-white max-w-[95%]"
         id={idAttribute}
         name={name}
         placeholder={placeholderText}

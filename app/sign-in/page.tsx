@@ -5,6 +5,7 @@ import FormInputEmail from "../components/smaller/formInputEmail";
 import FormInputPassword from "../components/smaller/formInputPassword";
 import { auth, signIn } from "../auth";
 import { redirect } from "next/navigation";
+import Footer from "../components/footer";
 
 export default async function SignInPage() {
   const session = await auth();
@@ -27,6 +28,8 @@ export default async function SignInPage() {
           text="Sign in with Github"
         ></ButtonYellow>
       </form>
+
+      <Footer></Footer>
     </>
   );
 }
