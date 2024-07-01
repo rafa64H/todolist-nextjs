@@ -5,13 +5,16 @@ import ButtonYellow from "./smaller/buttonYellow";
 import TodoItem from "./smaller/todoItem";
 import FilterTodosButtons from "./filterTodosButtons";
 import { FilterTodoContext } from "../contexts/filterTodosContext";
+import { User } from "next-auth";
 
 type Props = {
+  user: User;
   todos: Todo[];
   checkedTodos: Todo[];
   unCheckedTodos: Todo[];
 };
 export default function TodoList({
+  user,
   todos,
   checkedTodos,
   unCheckedTodos,
@@ -34,17 +37,23 @@ export default function TodoList({
               );
             })
           ) : filterTodo === "checked" ? (
-            checkedTodos.map((todoItem) => {
-              return (
-                <TodoItem
-                  key={todoItem.id}
-                  todoId={todoItem.id}
-                  todoChecked={todoItem.checked}
-                  todoText={todoItem.text}
-                ></TodoItem>
-              );
-            })
-          ) : (
+            checkedTodos.length > 0 ? (
+              checkedTodos.map((todoItem) => {
+                return (
+                  <TodoItem
+                    key={todoItem.id}
+                    todoId={todoItem.id}
+                    todoChecked={todoItem.checked}
+                    todoText={todoItem.text}
+                  ></TodoItem>
+                );
+              })
+            ) : (
+              <h2 className="text-white font-medium text-center my-8">
+                There are no todos
+              </h2>
+            )
+          ) : unCheckedTodos.length > 0 ? (
             unCheckedTodos.map((todoItem) => {
               return (
                 <TodoItem
@@ -55,6 +64,10 @@ export default function TodoList({
                 ></TodoItem>
               );
             })
+          ) : (
+            <h2 className="text-white font-medium text-center my-8">
+              There are no todos
+            </h2>
           )
         ) : (
           <h2 className="text-white font-medium text-center my-8">
@@ -62,7 +75,7 @@ export default function TodoList({
           </h2>
         )}
 
-        <FilterTodosButtons></FilterTodosButtons>
+        <FilterTodosButtons user={user}></FilterTodosButtons>
       </ul>
     </>
   );

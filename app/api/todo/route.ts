@@ -24,14 +24,26 @@ export async function POST(req: NextRequest) {
 }
 
 export async function DELETE(req: NextRequest) {
-  const { id } = await req.json();
+  const { id, userId, typeRemoval } = await req.json();
 
   try {
-    const deletedTodo = await prisma.todo.delete({
-      where: { id },
-    });
+    if (typeRemoval === "unique") {
+      const deletedTodo = await prisma.todo.delete({
+        where: { id },
+      });
+      return Response.json({ message: "OK", deletedTodo });
+    }
 
-    return Response.json({ message: "OK", deletedTodo });
+    if (typeRemoval === "completedTodos") {
+      const deletedTodos = await prisma.todo.deleteMany({
+        where: {
+          userId: userId,
+          checked: true,
+        },
+      });
+
+      return Response.json({ message: "OK", deletedTodos });
+    }
   } catch (err) {
     return NextResponse.json({
       message: "Error",

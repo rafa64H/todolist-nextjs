@@ -71,6 +71,7 @@ export default async function SignInPage() {
 
         <FilterTodoProvider>
           <TodoList
+            user={session.user}
             todos={todos}
             checkedTodos={checkedTodos}
             unCheckedTodos={unCheckedTodos}

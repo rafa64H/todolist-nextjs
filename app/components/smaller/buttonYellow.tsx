@@ -1,6 +1,8 @@
 "use client";
 import Link from "next/link";
-import { ReactNode } from "react";
+import { useRouter } from "next/navigation";
+import { ReactNode, useState } from "react";
+import { useFormStatus } from "react-dom";
 
 type props = {
   text?: string;
@@ -17,19 +19,22 @@ export default function ButtonYellow({
   possibleIcon,
   onClickFunction,
 }: props) {
+  const status = useFormStatus();
+  const router = useRouter();
+
   return (
-    <div
-      className={`${classNameExtra} inline-block bg-firstColorYellow p-2 my-2 text-white text-xl font-semibold cursor-pointer transition-all duration-200 hover:bg-secondColorDarkerYellow`}
-      onClick={() => {
+    <button
+      className={`${classNameExtra} inline-block bg-firstColorYellow p-2 my-2 text-white text-xl font-semibold cursor-pointer transition-all duration-200 hover:bg-secondColorDarkerYellow disabled:bg-gray-500 disabled:cursor-auto`}
+      disabled={status.pending}
+      onClick={async (e) => {
         if (onClickFunction) {
           onClickFunction();
         }
       }}
+      type={buttonType}
     >
-      <button type={buttonType}>
-        {possibleIcon}
-        {text}
-      </button>
-    </div>
+      {possibleIcon}
+      {text}
+    </button>
   );
 }

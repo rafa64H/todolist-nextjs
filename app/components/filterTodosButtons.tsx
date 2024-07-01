@@ -2,8 +2,12 @@
 import React, { useContext } from "react";
 import ButtonYellow from "./smaller/buttonYellow";
 import { FilterTodoContext } from "../contexts/filterTodosContext";
+import { User } from "next-auth";
 
-export default function FilterTodosButtons({}) {
+type Props = {
+  user: User;
+};
+export default function FilterTodosButtons({ user }: Props) {
   const { filterTodo, setFilterTodo } = useContext(FilterTodoContext)!;
 
   return (
@@ -32,7 +36,23 @@ export default function FilterTodosButtons({}) {
             }}
           ></ButtonYellow>
         </div>
-        <ButtonYellow buttonType="button" text="Clear completed"></ButtonYellow>
+        <ButtonYellow
+          buttonType="button"
+          text="Clear completed"
+          onClickFunction={async () => {
+            const userId = user.id;
+            await fetch("/api/todo", {
+              method: "DELETE",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                userId: userId,
+                typeRemoval: "completedTodos",
+              }),
+            });
+          }}
+        ></ButtonYellow>
       </div>
     </section>
   );
