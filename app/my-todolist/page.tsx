@@ -24,6 +24,9 @@ export default async function SignInPage() {
         id: session.user.id,
       },
     },
+    orderBy: {
+      createdAt: "asc",
+    },
   });
 
   const checkedTodos = await todos.filter((todo) => todo.checked === true);
