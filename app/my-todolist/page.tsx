@@ -9,6 +9,8 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import prisma from "../lib/prisma";
 import { revalidatePath } from "next/cache";
 import TodoItem from "../components/smaller/todoItem";
+import FilterTodoProvider from "../contexts/filterTodosContext";
+import TodoList from "../components/todoList";
 
 export default async function SignInPage() {
   const session = await auth();
@@ -51,7 +53,7 @@ export default async function SignInPage() {
             });
             revalidatePath("/my-todolist");
           }}
-          className="flex flex-col items-center gap-4 items-center"
+          className="flex flex-col items-center gap-4"
         >
           <input
             className="inline-block p-1 min-w-[55%] max-w-[40rem] text-2xl font-semibold"
@@ -64,41 +66,13 @@ export default async function SignInPage() {
           <ButtonYellow buttonType="submit" text="Create Todo"></ButtonYellow>
         </form>
 
-        <ul className="p-2 bg-slate-700 border-b-2 border-solid border-slate-500">
-          {todos.length > 0 ? (
-            todos.map((todoItem) => {
-              return (
-                <TodoItem
-                  key={todoItem.id}
-                  todoId={todoItem.id}
-                  todoChecked={todoItem.checked}
-                  todoText={todoItem.text}
-                ></TodoItem>
-              );
-            })
-          ) : (
-            <h2 className="text-white font-medium text-center my-8">
-              There are no todos
-            </h2>
-          )}
-        </ul>
-
-        <section>
-          <div className="flex flex-col items-center">
-            <div className="flex flex-wrap gap-2 justify-center">
-              <ButtonYellow buttonType="button" text="All todos"></ButtonYellow>
-              <ButtonYellow buttonType="button" text="Completed"></ButtonYellow>
-              <ButtonYellow
-                buttonType="button"
-                text="Uncompleted"
-              ></ButtonYellow>
-            </div>
-            <ButtonYellow
-              buttonType="button"
-              text="Clear completed"
-            ></ButtonYellow>
-          </div>
-        </section>
+        <FilterTodoProvider>
+          <TodoList
+            todos={todos}
+            checkedTodos={checkedTodos}
+            unCheckedTodos={unCheckedTodos}
+          ></TodoList>
+        </FilterTodoProvider>
       </section>
 
       <Footer></Footer>
