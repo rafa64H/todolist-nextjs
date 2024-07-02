@@ -15,7 +15,7 @@ import TodoList from "../components/todoList";
 export default async function SignInPage() {
   const session = await auth();
   if (!session?.user) {
-    redirect("/");
+    redirect("/sign-in");
   }
 
   const todos = await prisma.todo.findMany({

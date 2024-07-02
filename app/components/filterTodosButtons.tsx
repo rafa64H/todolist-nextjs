@@ -3,12 +3,14 @@ import React, { useContext } from "react";
 import ButtonYellow from "./smaller/buttonYellow";
 import { FilterTodoContext } from "../contexts/filterTodosContext";
 import { User } from "next-auth";
+import { useRouter } from "next/navigation";
 
 type Props = {
   user: User;
 };
 export default function FilterTodosButtons({ user }: Props) {
   const { filterTodo, setFilterTodo } = useContext(FilterTodoContext)!;
+  const router = useRouter();
 
   return (
     <section>
@@ -36,10 +38,9 @@ export default function FilterTodosButtons({ user }: Props) {
             }}
           ></ButtonYellow>
         </div>
-        <ButtonYellow
-          buttonType="button"
-          text="Clear completed"
-          onClickFunction={async () => {
+
+        <form
+          action={async () => {
             const userId = user.id;
             await fetch("/api/todo", {
               method: "DELETE",
@@ -51,8 +52,15 @@ export default function FilterTodosButtons({ user }: Props) {
                 typeRemoval: "completedTodos",
               }),
             });
+
+            router.refresh();
           }}
-        ></ButtonYellow>
+        >
+          <ButtonYellow
+            buttonType="submit"
+            text="Clear completed"
+          ></ButtonYellow>
+        </form>
       </div>
     </section>
   );

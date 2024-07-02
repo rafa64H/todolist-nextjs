@@ -11,10 +11,10 @@ import TitlePage from "../components/smaller/titlePage";
 import prisma from "../lib/prisma";
 import DeleteAccountComponent from "../components/deleteAccountComponent";
 
-export default async function SignInPage() {
+export default async function AccountPage() {
   const session = await auth();
   if (!session?.user) {
-    redirect("/");
+    redirect("/sign-in");
   }
 
   const todos = await prisma.todo.findMany({
