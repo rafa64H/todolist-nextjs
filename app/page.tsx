@@ -11,7 +11,15 @@ export default async function Home() {
     <>
       <Header></Header>
 
-      <TitlePage>Home</TitlePage>
+      <TitlePage>Welcome to Todo list app!</TitlePage>
+
+      <Image
+        className="mx-auto my-4"
+        src="/home-gif.gif"
+        alt="Logo"
+        width={700}
+        height={200}
+      ></Image>
 
       <SpaceForFooter></SpaceForFooter>
       <Footer></Footer>
