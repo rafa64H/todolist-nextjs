@@ -40,7 +40,7 @@ export default function NavComponent({ session }: Props) {
             </>
           ) : (
             <li>
-              <NavLink text="Account" link="/"></NavLink>
+              <NavLink text="Account" link="/account"></NavLink>
             </li>
           )}
         </ul>
