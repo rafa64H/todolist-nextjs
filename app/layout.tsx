@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} bg-fourthColorBrown overflow-x-hidden`}
+        className={`${inter.className} flex flex-col bg-fourthColorBrown overflow-x-hidden min-h-[100vh]`}
       >
         {children}
       </body>

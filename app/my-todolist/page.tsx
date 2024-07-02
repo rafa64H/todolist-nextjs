@@ -11,6 +11,7 @@ import { revalidatePath } from "next/cache";
 import TodoItem from "../components/smaller/todoItem";
 import FilterTodoProvider from "../contexts/filterTodosContext";
 import TodoList from "../components/todoList";
+import SpaceForFooter from "../components/smaller/spaceForFooter";
 
 export default async function SignInPage() {
   const session = await auth();
@@ -79,6 +80,7 @@ export default async function SignInPage() {
         </FilterTodoProvider>
       </section>
 
+      <SpaceForFooter></SpaceForFooter>
       <Footer></Footer>
     </>
   );

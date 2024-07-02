@@ -6,6 +6,7 @@ import FormInputPassword from "../components/smaller/formInputPassword";
 import { auth, signIn } from "../auth";
 import { redirect } from "next/navigation";
 import Footer from "../components/footer";
+import SpaceForFooter from "../components/smaller/spaceForFooter";
 
 export default async function SignInPage() {
   const session = await auth();
@@ -29,6 +30,7 @@ export default async function SignInPage() {
         ></ButtonYellow>
       </form>
 
+      <SpaceForFooter></SpaceForFooter>
       <Footer></Footer>
     </>
   );

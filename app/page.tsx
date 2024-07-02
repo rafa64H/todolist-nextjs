@@ -4,6 +4,7 @@ import prisma from "./lib/prisma";
 import Header from "./components/header";
 import Footer from "./components/footer";
 import TitlePage from "./components/smaller/titlePage";
+import SpaceForFooter from "./components/smaller/spaceForFooter";
 
 export default async function Home() {
   return (
@@ -12,6 +13,7 @@ export default async function Home() {
 
       <TitlePage>Home</TitlePage>
 
+      <SpaceForFooter></SpaceForFooter>
       <Footer></Footer>
     </>
   );

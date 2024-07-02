@@ -10,6 +10,7 @@ import Image from "next/image";
 import TitlePage from "../components/smaller/titlePage";
 import prisma from "../lib/prisma";
 import DeleteAccountComponent from "../components/deleteAccountComponent";
+import SpaceForFooter from "../components/smaller/spaceForFooter";
 
 export default async function AccountPage() {
   const session = await auth();
@@ -58,6 +59,8 @@ export default async function AccountPage() {
 
         <DeleteAccountComponent user={session.user}></DeleteAccountComponent>
       </section>
+
+      <SpaceForFooter></SpaceForFooter>
 
       <Footer></Footer>
     </>
