@@ -14,6 +14,9 @@ const config: Config = {
         thirdColorGreen: "#00735e",
         fourthColorBrown: "#4b4737",
       },
+      transformOrigin: {
+        custom90and0: "90% 0%",
+      },
     },
   },
   plugins: [require("@tailwindcss/forms")],

@@ -8,12 +8,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-[data-open-nav] {
-  transform: scale(0);
-  transition: all 200ms;
-  transform-origin: 90% 0%;
-}
-[data-open-nav="true"] {
-  transform: scale(1);
-}
